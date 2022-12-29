@@ -35,7 +35,7 @@ class DBHelper {
 
   _onCreate (Database db , int version )async{
     await db
-        .execute('CREATE TABLE cart (courseId INTEGER PRIMARY KEY ,courseName TEXT,coursePrice TEXT, courseInstructor TEXT , courseImage TEXT )');
+        .execute('CREATE TABLE cart (productId TEXT PRIMARY KEY ,productName TEXT,productPrice TEXT,  productImage TEXT )');
   }
 
   Future<Cart> insert(Cart cart)async{
@@ -58,12 +58,12 @@ class DBHelper {
 
   }
 
-  Future<int> delete(int courseId)async{
+  Future<int> delete(String productId)async{
     var dbClient = await db ;
     return await dbClient!.delete(
         'cart',
-        where: 'courseId = ?',
-        whereArgs: [courseId]
+        where: 'productId = ?',
+        whereArgs: [productId]
     );
   }
 
@@ -72,7 +72,7 @@ class DBHelper {
     return await dbClient!.update(
         'cart',
         cart.toMap(),
-        where: 'courseId = ?',
+        where: 'productId = ?',
         whereArgs: [cart.productId]
     );
   }
