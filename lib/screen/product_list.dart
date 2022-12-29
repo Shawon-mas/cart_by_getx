@@ -10,6 +10,7 @@ import '../database/db_helper.dart';
 import '../model/cart_model.dart';
 import '../model/product_model.dart';
 import '../widget/text_widget.dart';
+import 'cart_seceen.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({Key? key}) : super(key: key);
@@ -26,7 +27,13 @@ class ProductList extends StatelessWidget {
         actions: [
           GestureDetector(
             onTap: () {
-              // Get.toNamed(cartScreen);
+           //    Get.toNamed(myCart);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CartScreen(
+                        controller:  controller,
+                      )));
             },
             child: Center(
               child: Badge(
@@ -61,8 +68,7 @@ class ProductList extends StatelessWidget {
                                 id: product[index].id.toString(),
                                 image: product[index].image.toString(),
                                 name: product[index].name.toString(),
-                                description:
-                                    product[index].description.toString(),
+                                description: product[index].description.toString(),
                                 price: product[index].price.toString(),
                               )));
                 },
@@ -122,7 +128,7 @@ class ProductList extends StatelessWidget {
                                   final snackBar = SnackBar(
                                     backgroundColor: Colors.green,
                                     content: TextWidget(
-                                      value: 'Course is added to cart',
+                                      value: 'Product is added to cart',
                                       color: Colors.white,
                                       size: 14,
                                       fontWeight: FontWeight.w700,
@@ -136,7 +142,7 @@ class ProductList extends StatelessWidget {
                                   final snackBar = SnackBar(
                                     backgroundColor: Colors.red,
                                     content: TextWidget(
-                                      value: 'Course is already added to cart',
+                                      value: 'Product is already added to cart',
                                       color: Colors.white,
                                       size: 14,
                                       fontWeight: FontWeight.w700,

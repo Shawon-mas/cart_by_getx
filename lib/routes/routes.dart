@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import '../screen/cart_seceen.dart';
 import '../screen/product_list.dart';
 
 const product = "/";
-const productDetails = "/productDetails";
+const myCart = "/myCart";
 const discover = "/discover";
 const signin = "/signin";
 const signup = "/signup";
@@ -13,6 +14,7 @@ const home= "/homeScreen";
 
 final pages = [
   page(product,  ProductList(),),
+
 
 
 

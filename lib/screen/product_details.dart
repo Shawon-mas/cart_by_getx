@@ -5,6 +5,7 @@ import '../controller/cart_controller.dart';
 import '../database/db_helper.dart';
 import '../model/cart_model.dart';
 import '../widget/text_widget.dart';
+import 'cart_seceen.dart';
 class ProductDetails extends StatelessWidget {
   final String id;
   final String name;
@@ -29,6 +30,12 @@ class ProductDetails extends StatelessWidget {
           GestureDetector(
             onTap: () {
              // Get.toNamed(cartScreen);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CartScreen(
+                        controller: controller,
+                      )));
             },
             child: Center(
               child: Badge(
@@ -69,6 +76,7 @@ class ProductDetails extends StatelessWidget {
             SizedBox(height: 30,),
             Align( alignment: Alignment.center,
               child: MaterialButton(
+
                   onPressed: (){
                     dbHelper
                         .insert(Cart(
@@ -84,7 +92,7 @@ class ProductDetails extends StatelessWidget {
                       final snackBar = SnackBar(
                         backgroundColor: Colors.green,
                         content: TextWidget(
-                          value: 'Course is added to cart',
+                          value: 'Product is added to cart',
                           color: Colors.white,
                           size: 14,
                           fontWeight: FontWeight.w700,
@@ -98,7 +106,7 @@ class ProductDetails extends StatelessWidget {
                       final snackBar = SnackBar(
                         backgroundColor: Colors.red,
                         content: TextWidget(
-                          value: 'Course is already added to cart',
+                          value: 'Product is already added to cart',
                           color: Colors.white,
                           size: 14,
                           fontWeight: FontWeight.w700,
