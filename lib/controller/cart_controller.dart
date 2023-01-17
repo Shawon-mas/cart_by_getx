@@ -15,11 +15,12 @@ class CartController extends GetxController{
   Future<List<Cart>> get cart => _cart ;
 
   Future<List<Cart>> getData () async {
+    
     _cart = db.getCartList();
     return _cart ;
   }
   void _setPrefItems()async{
-    SharedPreferences prefs = await SharedPreferences.getInstance() ;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt('cart_item', _counter);
     prefs.setDouble('total_price', _totalPrice);
     update();

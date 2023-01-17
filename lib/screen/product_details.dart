@@ -61,68 +61,91 @@ class ProductDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 150,
+              height: 200,
               width: double.maxFinite,
               child: Image.network(
                 image,
                 fit: BoxFit.contain,
               ),
             ),
-            Text(name),
+            TextWidget(
+              value: name,
+              color: Colors.black,
+              size: 18,
+              fontWeight: FontWeight.w700,
+            ),
+
             SizedBox(height: 10,),
-            Text('${price} tk'),
+            TextWidget(
+              value: '${price} tk',
+              color: Colors.black,
+              size: 16,
+              fontWeight: FontWeight.w500,
+            ),
             SizedBox(height: 10,),
-            Text(description),
+            TextWidget(
+              value: description,
+              color: Colors.black,
+              size: 14,
+              fontWeight: FontWeight.w300,
+            ),
+
             SizedBox(height: 30,),
-            Align( alignment: Alignment.center,
-              child: MaterialButton(
 
-                  onPressed: (){
-                    dbHelper
-                        .insert(Cart(
-                        productId: id,
-                        productImage: image,
-                        productName: name,
-                        productPrice: price
-                    ))
-                        .then((value) {
-                      print("value:" + value.toString());
-                      controller.addTotalPrice(double.parse(price));
-                      controller.addCounter();
-                      final snackBar = SnackBar(
-                        backgroundColor: Colors.green,
-                        content: TextWidget(
-                          value: 'Product is added to cart',
-                          color: Colors.white,
-                          size: 14,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        duration: Duration(seconds: 2),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }).onError((error, stackTrace) {
-                      print("Error:" + error.toString());
-                      print("stackTrace: " + stackTrace.toString());
-                      final snackBar = SnackBar(
-                        backgroundColor: Colors.red,
-                        content: TextWidget(
-                          value: 'Product is already added to cart',
-                          color: Colors.white,
-                          size: 14,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        duration: Duration(seconds: 2),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    });
-                  },
-                child: Text('Add to cart'),
-                color: Colors.orangeAccent,
-                minWidth: 300.0,
-
-              ),
-            )
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: MaterialButton(
+          height: 50,
+          minWidth: double.maxFinite,
+          shape: RoundedRectangleBorder(
+              borderRadius:
+              BorderRadius.all(Radius.circular(10.0))),
+          onPressed: (){
+            dbHelper
+                .insert(Cart(
+                productId: id,
+                productImage: image,
+                productName: name,
+                productPrice: price
+            ))
+                .then((value) {
+              print("value:" + value.toString());
+              controller.addTotalPrice(double.parse(price));
+              controller.addCounter();
+              final snackBar = SnackBar(
+                backgroundColor: Colors.green,
+                content: TextWidget(
+                  value: 'Product is added to cart',
+                  color: Colors.white,
+                  size: 14,
+                  fontWeight: FontWeight.w700,
+                ),
+                duration: Duration(seconds: 2),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }).onError((error, stackTrace) {
+              print("Error:" + error.toString());
+              print("stackTrace: " + stackTrace.toString());
+              final snackBar = SnackBar(
+                backgroundColor: Colors.red,
+                content: TextWidget(
+                  value: 'Product is already added to cart',
+                  color: Colors.white,
+                  size: 14,
+                  fontWeight: FontWeight.w700,
+                ),
+                duration: Duration(seconds: 2),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            });
+          },
+          child: Text('Add to cart'),
+          color: Colors.orangeAccent,
+
+
         ),
       ),
     );

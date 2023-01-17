@@ -75,9 +75,7 @@ class ProductList extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(
-                      5,
-                    ),
+                    borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
@@ -96,9 +94,12 @@ class ProductList extends StatelessWidget {
                           SizedBox(
                             height: 150,
                             width: 150,
-                            child: Image.network(
-                              product[index].image.toString(),
-                              fit: BoxFit.contain,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Image.network(
+                                product[index].image.toString(),
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                           const SizedBox(
