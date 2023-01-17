@@ -14,10 +14,6 @@ const home= "/homeScreen";
 
 final pages = [
   page(product,  ProductList(),),
-
-
-
-
 ];
 GetPage page(String name, Widget page) {
   return GetPage(name: name, page: () => page);

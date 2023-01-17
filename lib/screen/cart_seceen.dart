@@ -34,7 +34,12 @@ class CartScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             Lottie.network(
-                                'https://assets6.lottiefiles.com/packages/lf20_iezsnh5g.json')
+                                'https://assets6.lottiefiles.com/packages/lf20_iezsnh5g.json'),
+                            TextWidget(
+                                value: 'Your Cart Is Empty',
+                                color: Colors.black,
+                                size: 18,
+                                fontWeight: FontWeight.w700),
                           ],
                         ),
                       );
